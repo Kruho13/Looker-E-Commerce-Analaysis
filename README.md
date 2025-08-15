@@ -20,7 +20,7 @@ The goal of this EDA is to uncover patterns in customer behavior, product perfor
 
 ---
 
-## 1️⃣ Descriptive Analysis
+## Descriptive Analysis
 
 ### Orders Table
 - **Order Status:** Majority of orders were **Shipped**, **Completed**, or **Processing**, indicating strong fulfillment performance.  
@@ -46,7 +46,7 @@ The goal of this EDA is to uncover patterns in customer behavior, product perfor
 
 ---
 
-## 2️⃣ Diagnostic & Prescriptive Analysis (Section 4)
+## Diagnostic & Prescriptive Analysis (Section 4)
 
 ### Returns by Category
 
@@ -92,7 +92,7 @@ The goal of this EDA is to uncover patterns in customer behavior, product perfor
 
 ---
 
-## 3️⃣ Next Steps
+## Next Steps
 - Conduct **predictive analysis** for demand spikes and late deliveries to optimize inventory and logistics.  
 - Build **Power BI dashboards** to visualize trends, KPIs, and actionable insights.  
 - Integrate insights into business strategy to improve revenue, operational efficiency, and customer satisfaction.
