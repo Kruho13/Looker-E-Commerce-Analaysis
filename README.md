@@ -68,7 +68,7 @@ The goal of this EDA is to uncover patterns in customer behavior, product perfor
 |-----------------------------------------------------------|------------------|------------|------------|
 | Darla                                                     | Outerwear & Coats | 594.4      | 10         |
 | Nobis Yatesy Parka                                        | Outerwear & Coats | 568.1      | 8          |
-| The North Face Apex Bionic Soft Shell Jacket - Men's     | Outerwear & Coats | 539.99     | —          |
+| The North Face Apex Bionic Soft Shell Jacket - Men's     | Outerwear & Coats | 539.99     | 3          |
 
 **Business Insight:** High-margin products drive significant profits even if sold in smaller quantities.  
 **Actionable Recommendations:**  
