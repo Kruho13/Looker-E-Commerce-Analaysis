@@ -14,3 +14,21 @@ A BigQuery + Power BI project analyzing retail sales data to uncover trends, dia
 | inventory_items | inventory_item_id, product_id, distribution_center_id, quantity_on_hand | Track stock levels (optional) |
 | distribution_centers | id, name, state, city | Locations for inventory fulfillment |
 
+EDA findings:
+DESCRIPTIVE ANALYSIS
+
+Order table:
+- majority of orders were shipped, completed, or proccessing
+- total orders per month showed a steady increase with respect to time
+- avg items per order was 1.45
+
+Order Items table
+- product_id 19136 was ordered the most amount of times at 19
+- product_id 24428 netted in the most total sales at $1448
+
+Users table:
+- Guangdong, England, and California had the most users
+- The average age of users was 41
+- Search was by far the most effective method of sourcing traffic
+
+- 
