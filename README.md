@@ -1,99 +1,72 @@
-# Looker-E-Commerce-Analaysis
-A BigQuery + Power BI project analyzing retail sales data to uncover trends, diagnose performance drivers, and predict demand for actionable business impact.
+# Supply Chain Analytics with SQL (The Look E-commerce Dataset)
 
-# Data Dictionary
-## Data Dictionary
+## 1. Business Context  
+E-commerce companies rely heavily on supply chain efficiency: how fast items are shipped, where inventory is held, and how returns impact revenue. Inefficiencies can lead to higher costs, slower deliveries, or lost sales.  
 
-| Table | Key Columns | Notes |
-|-------|------------|------|
-| users | id, gender, country, state, city | Customer info, can segment revenue by demographics or location |
-| orders | order_id, user_id, created_at, shipped_at, status | Track order timing, fulfillment, and returns |
-| order_items | order_id, product_id, quantity, sale_price, status | Core for revenue & inventory KPIs |
-| products | id, category, brand, retail_price | Product metadata for revenue segmentation, promotions |
-| events | event_id, user_id, event_type, event_time | Track user interactions (optional enrichment) |
-| inventory_items | inventory_item_id, product_id, distribution_center_id, quantity_on_hand | Track stock levels (optional) |
-| distribution_centers | id, name, state, city | Locations for inventory fulfillment |
+This project analyzes **The Look E-commerce dataset** (Google BigQuery public data) to uncover actionable insights on fulfillment, returns, distribution centers, and customer purchasing patterns. The work demonstrates how SQL-based analysis can inform **supply chain strategy, demand planning, and customer experience improvements**.
 
-# Exploratory Data Analysis (EDA) – The Look E-Commerce Dataset
-
-The goal of this EDA is to uncover patterns in customer behavior, product performance, and order trends to drive actionable business insights.
+Dataset link: [The Look E-commerce (BigQuery Public Dataset)](https://console.cloud.google.com/marketplace/product/bigquery-public-data/thelook-ecommerce)
 
 ---
 
-## Descriptive Analysis
-
-### Orders Table
-- **Order Status:** Majority of orders were **Shipped**, **Completed**, or **Processing**, indicating strong fulfillment performance.  
-  **Business Insight:** Monitoring cancellations and failed orders can help reduce lost revenue and improve customer satisfaction.
-- **Monthly Trends:** Total orders per month showed a **steady increase over time**, reflecting platform growth.  
-  **Business Insight:** Identifies peak periods for staffing, promotions, and inventory planning.
-- **Average Items per Order:** 1.45 items per order.  
-  **Business Insight:** Opportunities exist to **increase basket size** through product bundling or cross-sell promotions.
-
-### Order Items Table
-- **Most Ordered Product:** `product_id 19136` ordered **19 times**.  
-  **Business Insight:** Indicates high-demand SKUs; ensure stock availability and consider featuring these products.
-- **Top Revenue Product:** `product_id 24428` generated **$1,448** in total sales.  
-  **Business Insight:** High-revenue SKUs are critical to profitability; focus on promotions, inventory, and margin optimization.
-
-### Users Table
-- **Top Regions:** Guangdong, England, and California had the most users.  
-  **Business Insight:** Focus marketing and logistics efforts on high-volume regions to maximize conversion and reduce delivery costs.
-- **Average Age:** 41 years.  
-  **Business Insight:** Enables targeted marketing campaigns and personalized promotions for the core demographic.
-- **Traffic Source Effectiveness:** **Search** drove the highest number of users.  
-  **Business Insight:** Invest in top-performing acquisition channels; optimize underperforming channels to increase conversions.
+## 2. Approach  
+- **SQL Analysis**: Queries written in BigQuery SQL, organized into descriptive, diagnostic, and strategic insights.  
+- **Outputs**: Key tables extracted (top 5–10 rows or aggregated results).  
+- **Business Framing**: Each query is connected to a supply chain or business strategy implication.  
+- **Visualization**: Outputs are designed for integration into a Power BI dashboard for executive decision-making.  
 
 ---
 
-## Diagnostic & Prescriptive Analysis (Section 4)
+## 3. Analysis & Key Insights  
 
-### Returns by Category
+### 📊 Descriptive Insights (What happened?)  
+- **Fulfillment Speed**:  
+   - Avg shipping ≈ **1 day**, avg delivery ≈ **2 days** → strong logistics baseline.  
+- **Distribution Center Processing**:  
+   - All DCs process orders in <0.4 days → very lean operations.  
+- **Geography of Sales**:  
+   - Top demand from **China (Guangdong, Shanghai, Beijing)** and **US (California, Texas, New York)**.  
+- **Order Size by Region**:  
+   - Certain small regions (e.g., Iwate, Alaska) show higher items/order, but with low revenue impact.  
 
-| Category      | Total Returns | Total Sold | Return Rate (%) |
-|---------------|---------------|------------|----------------|
-| Plus          | 437           | 4,176      | 10.46          |
-| Accessories   | 1,033         | 9,926      | 10.41          |
-| Shorts        | 1,163         | 11,250     | 10.34          |
+### 🔍 Diagnostic Insights (Why did it happen?)  
+- **Return Rates**:  
+   - Highest return rates in **Jumpsuits & Rompers, Activewear, Jeans** (>10%).  
+   - Indicates potential issues in **fit/quality or shipping accuracy**.  
+- **Stockouts/Overstocks**:  
+   - Many jeans SKUs have **>60% unsold inventory** → over-purchasing or weak demand.  
+   - High potential revenue leakage in apparel categories.  
+- **Bottleneck Finder**:  
+   - Fulfillment: ~36 hrs, Transit: ~59 hrs → main delay comes from **carrier logistics**, not DCs.  
 
-**Business Insight:** Certain categories have higher return rates (~10%), which increases costs and reduces margins.  
-**Actionable Recommendations:**  
-- Investigate product quality, sizing, or marketing issues.  
-- Improve product descriptions and sizing guides.  
-- Focus promotions on low-return categories to improve profitability.
-
-### High-Margin Products
-
-| Name                                                      | Category           | Avg Margin | Total Sold |
-|-----------------------------------------------------------|------------------|------------|------------|
-| Darla                                                     | Outerwear & Coats | 594.4      | 10         |
-| Nobis Yatesy Parka                                        | Outerwear & Coats | 568.1      | 8          |
-| The North Face Apex Bionic Soft Shell Jacket - Men's     | Outerwear & Coats | 539.99     | 3          |
-
-**Business Insight:** High-margin products drive significant profits even if sold in smaller quantities.  
-**Actionable Recommendations:**  
-- Ensure high-margin SKUs are in stock to avoid lost revenue.  
-- Promote these products strategically via bundling, upsells, or featured placements.  
-- Monitor inventory closely to capitalize on peak demand.
-
-### Shipping Delays by Region
-
-| State      | Total Orders | Avg Delivery Days |
-|------------|--------------|-----------------|
-| Okinawa    | 9            | 3.67            |
-| Yamaguchi  | 5            | 3.60            |
-| Gunma      | 2            | 3.50            |
-
-**Business Insight:** Certain regions experience longer delivery times, affecting customer satisfaction and repeat purchases.  
-**Actionable Recommendations:**  
-- Reallocate inventory closer to high-demand regions.  
-- Optimize logistics and fulfillment routes for efficiency.  
-- Consider expedited shipping options or proactive customer communication in slow regions.
+### 🚀 Strategic Insights (What should we do?)  
+- **Distribution Center Utilization**:  
+   - Memphis, Chicago, Houston handle highest volumes → may risk overload.  
+   - Opportunity to **rebalance across underutilized DCs** (e.g., Charleston, Savannah).  
+- **Cohort Analysis**:  
+   - Some cohorts show **repeat purchases months/years later** → loyalty exists but is **sporadic**.  
+   - Targeted retention strategies could smooth this out.  
+- **ABC Analysis (Pareto 80/20)**:  
+   - Revenue is highly concentrated → top 20% of SKUs (“A”) drive ~80% of revenue.  
+   - Focus forecasting, promotions, and inventory prioritization here.  
 
 ---
 
-## Next Steps
-- Conduct **predictive analysis** for demand spikes and late deliveries to optimize inventory and logistics.  
-- Build **Power BI dashboards** to visualize trends, KPIs, and actionable insights.  
-- Integrate insights into business strategy to improve revenue, operational efficiency, and customer satisfaction.
+## 4. Deliverables  
+- [`sql_queries.sql`](./sql_queries.sql): All queries used in the project.  
+- [`query_outputs.md`](./query_outputs.md): Top rows & insights for each query.  
 
+---
+
+## 5. Next Steps  
+- **Power BI Dashboard**: Build visuals grouped into 3 sections:  
+   - Operations (fulfillment speed, bottlenecks, DC performance)  
+   - Returns & Inventory (return rates, stock imbalances)  
+   - Revenue & Demand (geographic sales, cohorts, ABC analysis)  
+- **Business Strategy**:  
+   - Address high-return categories with QA or sizing adjustments.  
+   - Rebalance inventory placement across DCs.  
+   - Prioritize “A” products in forecasting and promotions.  
+   - Explore retention campaigns for repeat buyers.  
+
+---
