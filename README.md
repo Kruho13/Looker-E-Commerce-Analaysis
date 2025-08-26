@@ -21,11 +21,12 @@ Dataset link: [The Look E-commerce (BigQuery Public Dataset)](https://console.cl
 
 ### 📊 Descriptive Insights (What happened?)  
 - **Fulfillment Speed**:  
-   - Avg shipping ≈ **1 day**, avg delivery ≈ **2 days** → strong logistics baseline.  
+   - Avg shipping ≈ **1 day**, avg delivery ≈ **2 days** → strong logistics baseline.
+   - Delivery time may be a potential bottleneck
 - **Distribution Center Processing**:  
    - All DCs process orders in <0.4 days → very lean operations.  
 - **Geography of Sales**:  
-   - Top demand from **China (Guangdong, Shanghai, Beijing)** and **US (California, Texas, New York)**.  
+   - Top demand from **China (Guangdong, Shanghai, Beijing)**, **US (California, Texas, New York)**. and **England**.
 - **Order Size by Region**:  
    - Certain small regions (e.g., Iwate, Alaska) show higher items/order, but with low revenue impact.  
 
@@ -45,7 +46,8 @@ Dataset link: [The Look E-commerce (BigQuery Public Dataset)](https://console.cl
    - Opportunity to **rebalance across underutilized DCs** (e.g., Charleston, Savannah).  
 - **Cohort Analysis**:  
    - Some cohorts show **repeat purchases months/years later** → loyalty exists but is **sporadic**.  
-   - Targeted retention strategies could smooth this out.  
+   - Targeted retention strategies could smooth this out.
+   - Currently present but extremely thin
 - **ABC Analysis (Pareto 80/20)**:  
    - Revenue is highly concentrated → top 20% of SKUs (“A”) drive ~80% of revenue.  
    - Focus forecasting, promotions, and inventory prioritization here.  
@@ -59,14 +61,15 @@ Dataset link: [The Look E-commerce (BigQuery Public Dataset)](https://console.cl
 ---
 
 ## 5. Next Steps  
-- **Power BI Dashboard**: Build visuals grouped into 3 sections:  
+- **Looker Dashboard**: Build visuals grouped into 3 sections:  
    - Operations (fulfillment speed, bottlenecks, DC performance)  
    - Returns & Inventory (return rates, stock imbalances)  
    - Revenue & Demand (geographic sales, cohorts, ABC analysis)  
 - **Business Strategy**:  
-   - Address high-return categories with QA or sizing adjustments.  
-   - Rebalance inventory placement across DCs.  
-   - Prioritize “A” products in forecasting and promotions.  
-   - Explore retention campaigns for repeat buyers.  
+   - Revenue is evenly distributed across products → focus inventory planning on breadth, not depth.
+   - High return rates in some categories → invest in quality checks or better sizing guides.
+   - Customer retention matters → loyalty programs/retention campaigns could drive repeat purchases.
+   - Orders are spread across multiple DCs → rebalance inventory placement to reduce shipping times/costs.
+   - Seasonal/demand spikes exist → forecasting and demand planning should guide promotions and stock levels. 
 
 ---
